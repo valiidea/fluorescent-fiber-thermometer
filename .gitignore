@@ -1,0 +1,17 @@
+build/
+*.o
+*.exe
+*.bin
+*.hex
+*.elf
+*.map
+*.zip
+*.csv
+*.xlsx
+*.png
+*.jpg
+*.ref
+*.log
+.DS_Store
+.idea/
+.vscode/
