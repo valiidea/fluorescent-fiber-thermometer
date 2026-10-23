@@ -1,5 +1,10 @@
 # Fluorescent Fiber Thermometer · C 演示项目
 
+[![C11 checks](https://github.com/valiidea/fluorescent-fiber-thermometer/actions/workflows/ci.yml/badge.svg)](https://github.com/valiidea/fluorescent-fiber-thermometer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+[快速开始](docs/getting-started.md) · [文档目录](docs/README.md) · [Wiki](https://github.com/valiidea/fluorescent-fiber-thermometer/wiki) · [参与贡献](CONTRIBUTING.md)
+
 用简化的 C 代码介绍荧光测温软件的数据处理思路：组织采样、选择窗口、去除背景、提取衰减特征、平滑结果，再形成反馈建议。
 
 本项目定位为**设计说明与代码阅读演示**。数据由数学公式虚构，横轴和输出均为无量纲示意值。代码不包含设备驱动、实际采样时序、控制参数、标定数据或温度输出，不构成可烧录的测温固件。
@@ -47,6 +52,15 @@ make test
 生成文件位于忽略的 `build/` 目录。程序只进行内存计算和控制台输出，不查找或连接外部设备。
 
 输出中的 `feature` 和 `smoothed` 是相对特征，不能读作微秒或摄氏度；`suggestion` 只展示判断分支，不会输出控制指令。示例中的采样数量、窗口位置、平滑权重和比较值均为演示设定。
+
+## 项目状态与协作
+
+当前为可在桌面运行的概念演示，尚未发布带版本号的正式 Release。自动检查覆盖 Linux GCC/Clang、macOS Clang 及消毒器运行，具体结果见上方 CI 状态。
+
+- 学习与排错：[快速开始](docs/getting-started.md)、[接口参考](docs/api.md)、[FAQ](docs/faq.md)。
+- 参与改进：[贡献指南](CONTRIBUTING.md)、[行为准则](CODE_OF_CONDUCT.md)、[支持说明](SUPPORT.md)。
+- 项目维护：[路线图](docs/roadmap.md)、[变更记录](CHANGELOG.md)、[维护与 Insights](docs/maintenance.md)。
+- 安全问题：[私密报告说明](SECURITY.md)。
 
 ## 许可证
 

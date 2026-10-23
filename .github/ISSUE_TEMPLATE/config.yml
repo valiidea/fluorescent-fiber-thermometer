@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 阅读文档与常见问题
+    url: https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/README.md
+    about: 先查看运行方法、接口说明和 FAQ。
+  - name: 私密报告安全漏洞
+    url: https://github.com/valiidea/fluorescent-fiber-thermometer/security/advisories/new
+    about: 请勿在公开 Issue 中披露尚未修复的漏洞。
