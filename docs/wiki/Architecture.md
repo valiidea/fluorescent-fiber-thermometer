@@ -1,9 +1,10 @@
-# 设计与架构
+# 架构与技术细节
 
-处理链为合成输入 → 双窗口去背景 → 相对衰减特征 → 平滑；文字建议由早期窗口均值单独产生。温度映射仅作概念说明。
+核心算法、主机 I/O 和评测报告分层，状态由调用方持有；无效估计不会伪装成有效的旧值。
 
-- [设计说明](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/design.md)
-- [代码导读](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/code-guide.md)
-- [接口与边界条件](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/api.md)
+- [技术设计与数据流](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/design.md)
+- [代码阅读顺序](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/code-guide.md)
+- [C API 契约](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/api.md)
+- [算法推导与数值设计](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/algorithms.md)
 
-技术内容以主仓库文档为准，此页提供阅读入口。
+内容以主仓库文档为准。

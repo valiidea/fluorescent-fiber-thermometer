@@ -2,51 +2,58 @@
 
 ## 环境
 
-需要 Git、Make，以及支持 C11 的 GCC 或 Clang。代码使用标准 C 库和数学库，没有包管理器依赖。
+- C11 编译器（GCC / Clang）、Make、标准 C 库与数学库。
+- Python 3.9+：用于端到端测试和报告，标准库即可。
+- 可选 Matplotlib：只用于生成图，不影响 C 程序运行。
+- macOS 可安装 Xcode Command Line Tools；Linux 使用发行版编译工具；Windows 建议 WSL。未验证原生 MSVC。
 
-- Linux：安装发行版提供的 C 编译工具与 Make。
-- macOS：安装 Xcode Command Line Tools（`xcode-select --install`）。
-- Windows：建议在 WSL 的 Linux 环境运行；目前 CI 不验证原生 MSVC 构建。
-
-## 下载、运行和测试
+## 构建与验证
 
 ```sh
 git clone https://github.com/valiidea/fluorescent-fiber-thermometer.git
 cd fluorescent-fiber-thermometer
-make run
+make all
 make test
+make run
+make example
 ```
 
-`make` 只构建程序；`make run` 构建并运行；`make test` 构建并执行断言测试。产物在被 Git 忽略的 `build/` 中。Makefile 没有 `install` 或 `clean` 目标。
+`make all` 生成 `build/demo`、`build/thermo` 和 `build/libfluorescence.a`。`make run` 保留原始八帧演示；`make example` 编译并运行静态库调用示例。只运行 C 测试用 `make test-c`。
 
-可显式选择编译器和独立输出目录：
+指定编译器与输出目录：
 
 ```sh
-make CC=clang BUILD=build/clang run test
+make CC=clang BUILD=build/clang all test
 ```
 
-更换编译器或编译选项时使用新的 `BUILD` 目录，避免 Make 复用旧产物。
+更改编译参数后使用新目录或 `make -B`，避免复用旧产物。macOS 的 `gcc` 可能是 Apple Clang，不能据此声称验证了 GNU GCC。
 
-## 如何阅读输出
+## 生成、分析与比较
 
-前两帧示例（小数末位可能因平台而有差异）：
-
-```text
-frame   early    late     feature  smoothed  suggestion
-    0   0.4260   0.1222   0.3100   0.3100    hold
-    1   0.4699   0.1323   0.3054   0.3089    hold
+```sh
+build/thermo simulate --frames 100 --seed 42 --tau 0.3 --noise 0.02 > build/frames.csv
+build/thermo analyze --input build/frames.csv --method window > build/window.csv
+build/thermo analyze --input build/frames.csv --method log > build/log.csv
+build/thermo analyze --input build/frames.csv --method nls > build/nls.csv
+make experiment
 ```
 
-| 列 | 含义 |
-|---|---|
-| frame | 合成帧序号，从 0 开始，共 8 帧 |
-| early / late | 去背景后的早期 / 晚期窗口均值 |
-| feature | 无量纲相对衰减特征 |
-| smoothed | 跨帧加权后的相对特征 |
-| suggestion | 对早期窗口均值作比较所得的文字建议 |
+数值结果写到 stdout，运行参数与统计写到 stderr。详细格式、错误码及参数见 [CLI 文档](cli.md)。检查退出码后再使用输出；语法错误时可能已输出部分行。
 
-反馈依据是 `early`，不是平滑后的衰减特征。所有输出都是合成示意值，不能解释为温度、时间或硬件控制量。
+生成图表：
 
-测试成功会输出 `PASS: illustrative analysis, smoothing and textual suggestions`。它只验证演示代码，不验证真实设备性能。
+```sh
+python3 -m venv build/plot-env
+build/plot-env/bin/python -m pip install -r requirements-plots.txt
+build/plot-env/bin/python tools/plot.py build/report/summary.csv --output build/report/benchmark
+```
 
-继续阅读 [设计说明](design.md) 与 [代码导读](code-guide.md)。
+报告位于 `build/report/results.md`，图为 `.svg` 和 `.png`。仓库内也保留一份[已执行快照](../reports/README.md)。
+
+## 最小 API 接入
+
+阅读 [examples/estimate.c](../examples/estimate.c)：初始化 RNG → 生成帧 → 取得默认配置 → `est_fit` → 检查状态 → 使用结果。实际输入方可以直接填充 `demo_frame`，无需调用仿真函数。
+
+## 理解输出
+
+`tau` 是归一化衰减参数；`rmse` 是信号拟合残差；`smoothed` 是对有效 τ 进行 EWMA 后的值。三者均无真实温度单位。`r_squared` 不是测温准确率。原始 demo 中的文字建议也不会输出控制指令。

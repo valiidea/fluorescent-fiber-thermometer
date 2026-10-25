@@ -1,13 +1,22 @@
-# 项目 Wiki
+# 项目总览
 
-本项目用纯 C11 与合成、无量纲数据讲解荧光测温软件的数据处理思路。它是设计与代码阅读演示，不是可烧录固件，不输出真实温度。
+荧光衰减信号处理与可复现实验工具：纯 C11 算法、静态库、CSV 命令行、三方法评测与技术文档。所有数据与参数均为合成无量纲量，没有真实测温或硬件验证。
 
+- [项目说明](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/README.md)
 - [快速开始](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/getting-started.md)
-- [设计说明](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/design.md)
-- [代码导读](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/code-guide.md)
-- [接口参考](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/api.md)
-- [常见问题](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/faq.md)
-- [维护路线图](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/roadmap.md)
-- [贡献指南](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/CONTRIBUTING.md)
+- [技术设计](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/design.md)
+- [算法与数值细节](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/algorithms.md)
+- [实验结果](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/reports/reference/results.md)
+- [项目经历与演示](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/portfolio.md)
 
-技术内容以主仓库文档为准，此页提供阅读入口。
+## Wiki 导航
+
+- [架构与技术细节](https://github.com/valiidea/fluorescent-fiber-thermometer/wiki/Architecture)
+- [快速开始](https://github.com/valiidea/fluorescent-fiber-thermometer/wiki/Getting-Started)
+- [实验与验证](https://github.com/valiidea/fluorescent-fiber-thermometer/wiki/Experiments)
+- [项目展示](https://github.com/valiidea/fluorescent-fiber-thermometer/wiki/Portfolio)
+- [常见问题](https://github.com/valiidea/fluorescent-fiber-thermometer/wiki/FAQ)
+- [参与贡献](https://github.com/valiidea/fluorescent-fiber-thermometer/wiki/Contributing)
+- [维护与 Insights](https://github.com/valiidea/fluorescent-fiber-thermometer/wiki/Maintenance)
+
+内容以主仓库文档为准。

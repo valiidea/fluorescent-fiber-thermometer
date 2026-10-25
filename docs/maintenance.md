@@ -16,7 +16,7 @@ Insights 不是可填充的介绍页面。贡献者、提交频率和流量等�
 
 ## 检查与依赖
 
-CI 在 Ubuntu 的 GCC/Clang 和 macOS 的 Clang 上运行演示与现有测试，另以 Ubuntu Clang 执行 AddressSanitizer/UndefinedBehaviorSanitizer 检查。工作流只有仓库读取权限。Dependabot 每月检查 GitHub Actions 依赖；项目没有第三方 C 包依赖。
+CI 在 Ubuntu 的 GCC/Clang 和 macOS 的 Clang 上构建程序与静态库，运行原始演示、C/Python 测试及完整实验，并保存数值报告。另以 Ubuntu Clang 执行 AddressSanitizer/UndefinedBehaviorSanitizer 检查。工作流只有仓库读取权限。Dependabot 每月检查 GitHub Actions 依赖；项目没有第三方 C 包依赖。Matplotlib 仅用于可选绘图。
 
 ## 发布 Wiki
 
@@ -33,6 +33,8 @@ git -C /tmp/fft-wiki push
 ```
 
 上述目标目录必须尚不存在；已有 Wiki 内容先检查并合并，避免覆盖他人修改。不为同步额外创建长期访问令牌。
+
+Gitee 使用独立的 `git@gitee.com:valiidea/fluorescent-fiber-thermometer.wiki.git`。同步导航时将仓库文档链接替换为 Gitee 地址、`/wiki/` 替换为 `/wikis/`；Gitee 不将 `_Sidebar` / `_Footer` 自动作为 GitHub 风格部件使用，应将导航放在 Home 页面。主仓库通过 `git push origin main` 和 `git push gitee main` 分别同步；目前没有后台自动镜像。
 
 ## 版本发布
 

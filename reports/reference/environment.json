@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-25",
+  "platform": "macOS 27.0.1 arm64",
+  "compiler": "Apple clang 21.0.0 (clang-2100.3.34.2)",
+  "cflags": "-std=c11 -Wall -Wextra -Werror -O2",
+  "python": "3.9.6",
+  "matplotlib": "3.9.4",
+  "commands": [
+    "make all test experiment",
+    "build/bench_runtime > reports/reference/runtime.csv",
+    "build/plot-env/bin/python tools/plot.py build/report/summary.csv --output build/report/benchmark"
+  ],
+  "benchmark_sha256": "1852b704023a37567fd09d6ac6eecf55323b9af82e516e1294632dbbc0b4db94",
+  "source_sha256": {
+    "Makefile": "7fd2252f1bdaf3f2e761e009ddba6a2ae794f8d8c77adad954e52c4c2b0413e6",
+    "examples/estimate.c": "f1b9c80de0a10905380da27aeb900e654419e1c238626f541a89d273c5747aa4",
+    "include/demo.h": "44c6bb5d5f3a0886463150dcb602bd288bf8aef1c8f0664f3ed1d944e6de65eb",
+    "include/estimator.h": "c2aae4aaff3fa840c9dea8282a9d6f84d459e0e42c7cb0da437bba2a5d243dd7",
+    "include/frame_io.h": "8668eb0550678562c75fcc7769ed3951a7a51af81b89bfdadbe857cf03fae594",
+    "requirements-plots.txt": "2186900f094efca644230a4d60b1a8eff1ccb199a75c564d13ec146502c45ff1",
+    "src/analysis.c": "e21ef75547010e2f17a867e70d3b165c04a0683e72b14bc0ad68734319329086",
+    "src/cli.c": "0a29702209b05647380185f8b33494e5a9df9117cbc431684f48809008891b2d",
+    "src/estimator.c": "225bd0ec0e6477d13e1a868c72f3cf367a3e6eb2af8ed5828dc897c26c479a97",
+    "src/feedback.c": "213c65e5df27ce204cde4b0ef779a742407d686cd9f0d50bffb5c4368088c742",
+    "src/frame_io.c": "ec1aecad7d787d0826efdc6701b2139390e4943e5df26032c497242b68f8fc40",
+    "src/main.c": "266aa8f899b18e00f8363674d5790adb5928dbb96ba17dc7422ed669c4ae7848",
+    "src/noise.c": "8e77a8e535646b8b9f45796317125d45ee0a82484c84b0887a3b199b355e8fa9",
+    "src/simulation.c": "2b698020a3a8c9755b600f72a61d6e89c87c4ce9e538f1436bb9cd2d43e2e966",
+    "src/smoothing.c": "0298921d90261854f05b95ad57e6fe7adf7a5720c1170af9a9e562a6ee89cf93",
+    "tests/test_cli.py": "f16ecd805a98d11d27a6deebb4f5ceb7416480326b968c6fea39b55c9a3feee5",
+    "tests/test_demo.c": "d2890c67fa52185c6d17c3c4cc28a20e878d6f7a71599a23775e7f4d040423ce",
+    "tests/test_estimator.c": "aa5a74ecaccdcf19c6c152f1485616560507b2f3b6244742d89ca1d1380cebda",
+    "tests/test_report.py": "1720bdc9608f5c982110687fa2e1e6fcf9d5d8e561936c4ff35d1677ac1463e1",
+    "tools/bench_runtime.c": "2ce27c6a6b5cc36b058a9c4f9e4c159af6339d9e64052a83c0d3bd6f451ead78",
+    "tools/check_docs.py": "666caf4493caa8849be41c64bacd501c28d9a1630eff1713638799128084e2ea",
+    "tools/plot.py": "84444566858c3f950b3aef5817739d6a40c05fdbc4eba8651520ed8ebaaf7704",
+    "tools/report.py": "d65700ff2fd840d0a63a90c04c75a585c234d2f2fbc264099753005a6e32241e"
+  }
+}

@@ -32,6 +32,11 @@ int main(void)
     assert(demo_smooth(&filter, 2.0, 0.25) && filter.value == 1.25);
     assert(!demo_smooth(&filter, NAN, 0.25) && filter.value == 1.25);
     assert(!demo_smooth(&filter, 2.0, -0.1));
+    filter.value = INFINITY;
+    assert(!demo_smooth(&filter, 2.0, 0.5) && isinf(filter.value));
+    assert(!demo_smooth(NULL, 1.0, 0.5));
+    assert(!demo_smooth(&filter, 1.0, 0.0));
+    assert(!demo_smooth(&filter, 1.0, 1.01));
     assert(demo_suggest(0.2, 0.5, 0.1) == DEMO_INCREASE);
     assert(demo_suggest(0.5, 0.5, 0.1) == DEMO_HOLD);
     assert(demo_suggest(0.8, 0.5, 0.1) == DEMO_DECREASE);

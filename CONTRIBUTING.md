@@ -13,7 +13,8 @@
 ## 本地验证
 
 ```sh
-make run test
+make all run test experiment
+python3 tools/check_docs.py
 make CC=clang BUILD=build/clang test
 make CC=gcc BUILD=build/gcc test
 ```
@@ -21,6 +22,8 @@ make CC=gcc BUILD=build/gcc test
 macOS 的 `gcc` 可能也是 Apple Clang，请用 `gcc --version` 确认。CI 在 Ubuntu 上分别运行真正的 GCC 和 Clang，并在 macOS 上运行 Clang。
 
 保留现有四空格缩进与模块边界；使用标准 C11，不引入芯片 SDK、汇编或未说明的第三方实现。新增公开接口时同步更新头文件及接口文档。不得将合成输出描述为真实测温结果或标定参数。
+
+新增算法必须与现有基线使用同一批输入；展示误差时同时展示拒绝率。实验改变后重新生成报告，并说明网格、种子和环境。Python 测试与数值报告使用标准库，Matplotlib 是可选绘图依赖。
 
 ## 文档和 Wiki
 

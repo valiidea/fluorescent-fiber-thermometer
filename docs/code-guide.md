@@ -1,32 +1,25 @@
 # 代码导读
 
-从 `src/main.c` 开始，调用链依次为：
+## 推荐阅读顺序
 
-```c
-demo_generate(frame_number, &frame);
-demo_analyze(&frame, &windows, &result);
-demo_smooth(&filter, result.relative_decay, weight);
-demo_suggest(result.early, target, tolerance);
-```
+1. [demo.h](../include/demo.h)：固定帧、窗口和状态的数据模型。
+2. [estimator.h](../include/estimator.h)：新估计 API 与状态码。
+3. [noise.c](../src/noise.c)：RNG、Box–Muller、带噪单指数生成。
+4. [estimator.c](../src/estimator.c)：缩放、三种求解方法、统一质量诊断。
+5. [frame_io.c](../src/frame_io.c)：固定 CSV 协议，错误时不提交部分帧。
+6. [cli.c](../src/cli.c)：三个命令、帧有效性管理和实验网格。
+7. [report.py](../tools/report.py)：数据完整性检查、全体失败率与配对成功子集。
+8. [测试目录](../tests/test_estimator.c)：将上述契约转成可运行验证。
 
-上面是阅读顺序，完整的错误检查位于 `main.c`。示例数值只用于展示流程，不是产品参数。
+`src/main.c`、`simulation.c`、`analysis.c`、`feedback.c` 保留最初的短示例，适合先理解数据传递。新 CLI 独立入口位于 `src/cli.c`，两者分别生成 `demo` 和 `thermo`。
 
-## 数据对象
+## 值得深入的实现细节
 
-`demo_frame` 保存一帧虚构采样及背景；`demo_windows` 描述窗口范围；`demo_result` 保存两个窗口均值和相对衰减特征。`demo_filter` 是跨帧保留的状态，其余结果可以在每帧重新生成。
+- NLS 的 `objective` 以局部起点定义幅值，用闭式解消去幅值参数。
+- 三方法共享归一化信号；极端幅值测试说明缩放的作用。
+- `est_simulate` 在临时帧与临时 RNG 上工作，成功后才提交状态。
+- `frame_read` 严格限制每行长度和字段数量，失败不覆盖输出帧。
+- CLI 在失败帧上清空滤波历史，CSV 数值字段留空，避免旧值被当作新测量。
+- 报告校验完整网格和配对记录，再汇总误差；图表不能脱离拒绝率阅读。
 
-这种分工把数据处理与输入来源分开，读者无需理解 MCU 寄存器即可阅读模块之间的关系。
-
-## 分析代码
-
-`analysis.c` 先检查输入指针和窗口范围，随后求均值并验证信号关系，最后计算相对特征。错误路径返回 0，正常路径返回 1。传入有效结果指针时，失败结果会先被清零，调用方仍必须检查返回值。
-
-## 状态与建议
-
-`smoothing.c` 首次收到有效输入时直接初始化状态，后续输入再参与加权。`feedback.c` 将数值比较转为有含义的枚举，打印由调用方负责。两者都不依赖操作系统或硬件接口。
-
-## 简单验证
-
-`make test` 检查虚构指数曲线的相对特征、越界窗口、非有限输入、平滑状态和建议分支。这些检查只说明演示程序本身的行为，不代表任何真实设备测试结果。
-
-如需阅读全部实现，先看接口头文件，再依次阅读 simulation、analysis、smoothing、feedback，最后回到 main。项目没有隐藏的驱动层或额外二进制依赖。
+完整数学说明见 [算法文档](algorithms.md)，复现入口见 [实验文档](experiments.md)。

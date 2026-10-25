@@ -1,8 +1,9 @@
 # 快速开始
 
-从运行桌面演示开始，再理解输出中的早期均值、晚期均值、相对特征和平滑结果。
+构建演示、CLI 与静态库，然后运行测试及完整实验。
 
-- [环境、命令和输出示例](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/getting-started.md)
-- [常见问题与排错](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/faq.md)
+- [环境与构建](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/getting-started.md)
+- [CLI 与 CSV 协议](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/docs/cli.md)
+- [静态库示例](https://github.com/valiidea/fluorescent-fiber-thermometer/blob/main/examples/estimate.c)
 
-技术内容以主仓库文档为准，此页提供阅读入口。
+内容以主仓库文档为准。

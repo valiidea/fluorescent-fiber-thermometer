@@ -1,0 +1,33 @@
+{
+  "input_sha256": "1852b704023a37567fd09d6ac6eecf55323b9af82e516e1294632dbbc0b4db94",
+  "seed": "42",
+  "trials_per_cell": 128,
+  "frames": 5120,
+  "evaluations": 15360,
+  "paired_noise_003": {
+    "window": {
+      "total": 797,
+      "accepted": 797,
+      "rejected_percent": 0.0,
+      "rmse_percent": 14.164073392756437,
+      "bias_percent": 2.7456036330313927,
+      "p95_abs_percent": 19.081648063387036
+    },
+    "log": {
+      "total": 797,
+      "accepted": 797,
+      "rejected_percent": 0.0,
+      "rmse_percent": 12.282917098650941,
+      "bias_percent": 1.5675627793115972,
+      "p95_abs_percent": 16.251192823437744
+    },
+    "nls": {
+      "total": 797,
+      "accepted": 797,
+      "rejected_percent": 0.0,
+      "rmse_percent": 6.217555327736861,
+      "bias_percent": 0.6834825011973927,
+      "p95_abs_percent": 11.656566886010033
+    }
+  }
+}
